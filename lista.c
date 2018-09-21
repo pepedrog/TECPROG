@@ -13,8 +13,8 @@ typedef struct {
 
 Lista Lcria(void){
 	Lista s;
-	s->cabec = malloc(sizeof(Elo));
-	s->cabec->next = s->cabec->val = NULL;
+	s.cabec = malloc(sizeof(Elo));
+	s.cabec->next = s->cabec->val = NULL;
 	return s;
 }
 
@@ -24,7 +24,7 @@ void Ldestroi(Lista lista1){
 		struct elo* aux = crawler;
 		crawler = crawler->next;
 		free(aux->val);
-		free(aux);		
+		free(aux);
 	}
 	return;
 }
@@ -32,13 +32,13 @@ void Ldestroi(Lista lista1){
 Lista Linsere(Lista lista1, Elemento* val){
 	struct elo* crawler = lista1->cabec;
 	while(crawler != NULL && crawler->val != NULL){
-		crawler = crawler->next;		
+		crawler = crawler->next;
 	}
 	if(crawler == NULL) return NULL;
 	else{
 		crawler->val = val;
-		return crawler; 
-	}	
+		return crawler;
+	}
 }
 
 Elemento* Lbusca(Lista lista1, char* n){
@@ -47,9 +47,9 @@ Elemento* Lbusca(Lista lista1, char* n){
 		if(crawler->val != NULL && crawler->val->nome == n){
 			return crawler;
 		}
-		crawler = crawler->next;		
+		crawler = crawler->next;
 	}
-	return NULL;	
+	return NULL;
 }
 
 Elemento* Lretira(Lista lista1, Elemento* val){
@@ -59,9 +59,9 @@ Elemento* Lretira(Lista lista1, Elemento* val){
 			crawler->val == NULL;
 			return val;
 		}
-		crawler = crawler->next;		
+		crawler = crawler->next;
 	}
-	return NULL;	
+	return NULL;
 }
 
 

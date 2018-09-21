@@ -38,6 +38,7 @@ void Tdestroi(TabSim t){
 
 int Tinsere(TabSim t, char *n, Elemento *val){
 	int hash_val = hash(n, t.size);
+	printf("Hash do elemento: %d\n", hash_val);
 	return Linsere(t.listas[hash_val], val)==NULL?0:1;
 }
 
@@ -51,7 +52,7 @@ int Tretira(TabSim t, char *n){
 	struct elo* crawler = t.listas[hash_val].cabec; Elemento* out = NULL;
 	struct elo* last = crawler;
 	while(crawler != NULL){
-		if(crawler->val != NULL && crawler->val->n == n){
+		if(crawler->val != NULL && crawler->val->nome == n){
 			last->next = crawler->next;
 			free(crawler->val);
 			free(crawler);

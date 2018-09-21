@@ -9,9 +9,9 @@
 	string* longa;
 	string* curta;
 	elemento** contem;
-	
+
 }elemento;*/
 
 typedef struct{
-	char n[80];
+	char nome[80];
 } Elemento;

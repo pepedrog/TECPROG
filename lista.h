@@ -14,8 +14,7 @@ typedef struct {
 Lista Lcria(void){
 	Lista s;
 	s.cabec = malloc(sizeof(Elo));
-	s.cabec->next = NULL;
-	s.cabec->val = NULL;
+	s.cabec->next = s.cabec->val = NULL;
 	return s;
 }
 
@@ -25,43 +24,55 @@ void Ldestroi(Lista lista1){
 		struct elo* aux = crawler;
 		crawler = crawler->next;
 		free(aux->val);
-		free(aux);		
+		free(aux);
 	}
 	return;
 }
 
 struct elo* Linsere(Lista lista1, Elemento* val){
 	struct elo* crawler = lista1.cabec;
+	//printf("O crawler é nulo?%d\n",crawler = NULL);
 	while(crawler != NULL && crawler->val != NULL){
-		crawler = crawler->next;		
+		crawler = crawler->next;
 	}
-	if(crawler == NULL) return NULL;
+	printf("O crawler é nulo?%d\n",crawler == NULL);
+	if(crawler == NULL){
+		struct elo* proximo = malloc(sizeof(Elo));
+		proximo->val = val;
+		proximo->next = NULL;
+		crawler = proximo;
+		printf("Chegou no fim da lista :(\nDai inseriu o %s\n", val->nome);
+		//crawler
+		return NULL;
+	}
 	else{
 		crawler->val = val;
-		return crawler; 
-	}	
+		printf("%s\n",val->nome);
+		return crawler;
+	}
 }
 
 Elemento* Lbusca(Lista lista1, char* n){
 	struct elo* crawler = lista1.cabec;
 	while(crawler != NULL){
-		if(crawler->val != NULL && crawler->val->n == n){
-			return crawler->val;
+		printf("Busca\n");
+		printf("%s %s\n",crawler->val->nome, n);
+		if(crawler->val != NULL && crawler->val->nome == n){
+			return crawler;
 		}
-		crawler = crawler->next;		
+		crawler = crawler->next;
 	}
-	return NULL;	
+	return NULL;
 }
 
 Elemento* Lretira(Lista lista1, Elemento* val){
 	struct elo* crawler = lista1.cabec;
 	while(crawler != NULL){
 		if(crawler->val == val){
-			crawler->val == NULL;
+			crawler->val = NULL;
 			return val;
 		}
-		crawler = crawler->next;		
+		crawler = crawler->next;
 	}
-	return NULL;	
+	return NULL;
 }
-
